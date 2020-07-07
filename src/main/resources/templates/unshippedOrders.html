@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<!--  -->
+<head th:replace="fragments::head(title='Unshipped orders')"></head>
+<!--  -->
+<body>
+
+<nav th:replace="fragments::menu"></nav>
+
+<!--Unshipped orders  -->
+<p></p>
+<h1 >Unshipped orders</h1>
+<p></p>
+
+<!--Unshipped orders list  -->
+<form:form method="post" th:action="@{/}">
+<table class="zebra">
+    <tr><button> Set as Shipped</button></tr>
+    <tr>
+        <th>ID</th><th>Ordered</th><th>Required</th><th>Customer</th><th>Comments</th><th>Status</th><th>Ship</th>
+    </tr>
+    <tr th:each="order:${unshippedOrders}" th:object="${order}">
+
+        <td ><a th:text="*{id}" th:href="@{'/order/'+${order.getId()}}"></a></td>
+        <td th:text="*{ordered}"></td><td th:text="*{required}"></td>
+        <td th:text="*{customer.name}"></td>
+        <td th:text="*{comments}"></td>
+        <td ><img th:src="@{/images/{status}.png(status=*{status.name()})}" alt="status"><span th:text="*{status.name()}"></span></td>
+        <td ></td>
+<!--     http://fruzenshtein.com/spring-mvc-form-checkboxes/   -->
+    </tr>
+
+</table>
+</form:form>
+</body>
+</html>

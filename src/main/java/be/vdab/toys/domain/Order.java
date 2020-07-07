@@ -1,8 +1,11 @@
 package be.vdab.toys.domain;
 
+import com.sun.el.stream.Stream;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Objects;
@@ -40,7 +43,7 @@ public class Order {
 
     @OneToMany(mappedBy = "orderdetailsId.order",cascade = CascadeType.ALL)
     @OrderBy("orderdetailsId.product.id")
-    private Set<Orderdetail> orderdetails ;
+    private Set<Orderdetail> orderdetails = new LinkedHashSet<>();
     //--
     protected Order() {
     }
@@ -52,7 +55,7 @@ public class Order {
         this.comments = comments;
         this.customer = customer;
         setStatus(status);
-        this.orderdetails = new LinkedHashSet<>();
+        this.orderdetails=orderdetails ;
     }
 
     //--
@@ -96,6 +99,9 @@ public class Order {
 
     public void setShipped(LocalDate shipped) {
         this.shipped = shipped;
+    }
+    public BigDecimal orderTotalPrice(){
+        return this.getOrderdetails().stream().map(productsPrices->productsPrices.productTotalPrice()).reduce(BigDecimal.ZERO,BigDecimal::add);
     }
 
     @Override
