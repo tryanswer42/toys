@@ -71,3 +71,4 @@ public class Customer {
         return country;
     }
 }
+//setters als de klant mag verhuisen

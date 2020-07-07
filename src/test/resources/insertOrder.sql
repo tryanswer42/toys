@@ -1,0 +1,2 @@
+insert into orders (ordered, required, shipped, comments, customerId, status) VALUES
+                    (2000-10-10,2000-11-11,2000-12-12,'commenttest',(select id from customers where customers.name ='nametest'),'WAITING')
