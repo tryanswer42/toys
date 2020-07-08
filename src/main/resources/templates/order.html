@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<!--  -->
+<head th:replace="fragments::head(title='orders')"></head>
+<!--  -->
+<body>
+
+<nav th:replace="fragments::menu"></nav>
+
+<!--Unshipped orders  -->
+<p></p>
+<h1 >Order <span th:text="${order.id}"></span></h1>
+<p></p>
+
+<h3>Ordered:</h3>
+<p th:text="${order.ordered}"></p>
+<h3>Required:</h3>
+<p th:text="${order.required}"></p>
+<h3>Customer:</h3>
+<p th:text="${order.customer.name}"></p>
+<h3>Comments:</h3>
+<p th:text="${order.comments}"></p>
+<h3>Details:</h3>
+<table class="zebra">
+    <tr>
+        <th>Product</th><th>Price each</th><th>Quantity</th><th>Value</th><th>Deliverable</th>
+    </tr>
+    <tr th:each="product:${order.getOrderdetails()}" th:object="${product}">
+        <td th:text="*{product.name}"> </td>
+        <td th:text="*{priceEach}"> </td>
+        <td th:text="*{ordered}"> </td>
+        <td th:text="*{productTotalPrice()}"> </td>
+        <td ><span th:if="*{isDeliverable()}">&check;</span><span th:if="*{isDeliverable()==false}">&cross;</span> </td>
+    </tr>
+</table>
+<h3>Value:</h3>
+<p th:text="${order.orderTotalPrice()}"></p>
+
+
+
+
+
+</body>
+</html>

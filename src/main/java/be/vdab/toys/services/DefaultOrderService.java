@@ -8,13 +8,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional(readOnly = true,isolation = Isolation.READ_COMMITTED)
-public class DefaultOrderService implements OrderService{
+@Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED)
+public class DefaultOrderService implements OrderService {
 
     private final OrderRepository orderRepository;
 
@@ -23,14 +26,26 @@ public class DefaultOrderService implements OrderService{
     }
 
 
-
     @Override
     public Optional<Order> findById(long id) {
         return orderRepository.findById(id);
     }
 
     @Override
-    public List<Order> findAllByStatusExeptCancelledAndShipped(){
-        return orderRepository.findAll().stream().filter(order -> order.getStatus()!=Status.CANCELLED && order.getStatus()!=Status.SHIPPED).collect(Collectors.toList());
+    public List<Order> findAll() {
+        return orderRepository.findAll();
     }
+
+
+    @Override
+    public List<Order> findAllByStatusExeptCancelledAndShipped() {
+        return orderRepository.findAll().stream().filter(order -> order.getStatus() != Status.CANCELLED && order.getStatus() != Status.SHIPPED).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Order> findAllById(List<Long> idList) {
+        return orderRepository.findAllById(idList);
+    }
+
+
 }

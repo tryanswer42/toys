@@ -8,5 +8,9 @@ import java.util.Optional;
 
 public interface OrderService {
     List<Order> findAllByStatusExeptCancelledAndShipped();
+
+    List<Order> findAllById(List<Long> idList);
+
     Optional<Order> findById(long id);
+    List<Order> findAll();
 }

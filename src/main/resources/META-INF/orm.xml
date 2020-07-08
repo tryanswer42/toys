@@ -3,5 +3,10 @@
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
                  http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd" version="2.1">
-
+    <named-query name="Order.findAllInList">
+        <query>
+            select o from Order o
+            where o.id in :idList
+        </query>
+    </named-query>
 </entity-mappings>

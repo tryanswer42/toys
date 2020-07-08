@@ -13,7 +13,13 @@ import java.util.Set;
 
 @Entity
 @Table(name = "orders")
+@NamedEntityGraph(name = Order.WITH_CUSTOMERSANDCOUNTRY,
+        attributeNodes = @NamedAttributeNode(value = "customer",
+                subgraph = "withCountry"),
+        subgraphs = @NamedSubgraph(name = "withCountry",
+                attributeNodes = @NamedAttributeNode("country")))
 public class Order {
+    public static final String WITH_CUSTOMERSANDCOUNTRY = "Order.metCustomersAndCountry";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

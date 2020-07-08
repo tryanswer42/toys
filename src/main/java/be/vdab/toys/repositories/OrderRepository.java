@@ -9,5 +9,7 @@ import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Order,Long> {
     List<Order> findAll();
+//    List<Order> findAllInList(List<Long> idList);
+//    List<Order> findAllInListWithoutCustomersAndCountry(List<Long> idList);
 
 }

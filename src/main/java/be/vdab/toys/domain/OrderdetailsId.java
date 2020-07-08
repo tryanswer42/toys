@@ -6,6 +6,7 @@ import java.io.Serializable;
 @Embeddable
 @Access(AccessType.FIELD)
 public class OrderdetailsId implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Order order;
@@ -28,4 +29,5 @@ public class OrderdetailsId implements Serializable {
     public void setProduct(Product product) {
         this.product = product;
     }
+
 }

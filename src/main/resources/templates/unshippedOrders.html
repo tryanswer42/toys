@@ -11,9 +11,9 @@
 <p></p>
 <h1 >Unshipped orders</h1>
 <p></p>
-
+<div th:if="${ordersWithProblems} != null ">Shipping failed for order(s) <span th:each="failedOrder:${ordersWithProblems}" ><span th:text="${failedOrder}"></span>,</span> not enough stock </div>
 <!--Unshipped orders list  -->
-<form:form method="post" th:action="@{/}">
+<form method="post" th:action="@{/}">
 <table class="zebra">
     <tr><button> Set as Shipped</button></tr>
     <tr>
@@ -26,11 +26,12 @@
         <td th:text="*{customer.name}"></td>
         <td th:text="*{comments}"></td>
         <td ><img th:src="@{/images/{status}.png(status=*{status.name()})}" alt="status"><span th:text="*{status.name()}"></span></td>
-        <td ></td>
-<!--     http://fruzenshtein.com/spring-mvc-form-checkboxes/   -->
+        <td class="center">
+            <input type="checkbox" name="toShip" th:value="*{id}">
+        </td>
     </tr>
 
 </table>
-</form:form>
+</form>
 </body>
 </html>

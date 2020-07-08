@@ -50,6 +50,13 @@ public class Orderdetail {
     public BigDecimal productTotalPrice() {
         return priceEach.multiply(BigDecimal.valueOf(ordered));
     }
+    public boolean isDeliverable(){
+        boolean deliverable=false;
+        if(getProduct().getInOrder()-getOrdered() >= 0 && getProduct().getInStock()-getOrdered()>=0){
+            deliverable=true;
+        }
+        return deliverable;
+    }
 
 
     @Transient // so that Hibernate doesn’t try to map these getters
