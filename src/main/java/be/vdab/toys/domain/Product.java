@@ -1,5 +1,7 @@
 package be.vdab.toys.domain;
-
+/**
+ * @author Mulangu C
+ */
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
@@ -97,14 +99,14 @@ public class Product {
     }
 
     public void loweringInStock (int orderShipped){
-        if (orderShipped <= 0 ||inStock <orderShipped){
+        if (orderShipped < 0 ||inStock <orderShipped){
             throw new IllegalArgumentException();
         }
         inStock -= orderShipped;
     }
 
     public void loweringInOrder (int orderShipped){
-        if (orderShipped <= 0 ||inOrder < orderShipped){
+        if (orderShipped < 0 ||inOrder < orderShipped){
             throw new IllegalArgumentException();
         }
         inOrder -= orderShipped;

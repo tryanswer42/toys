@@ -1,5 +1,7 @@
 package be.vdab.toys.domain;
-
+/**
+ * @author Mulangu C
+ */
 import javax.persistence.*;
 import java.io.Serializable;
 

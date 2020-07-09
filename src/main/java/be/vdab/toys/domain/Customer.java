@@ -1,6 +1,8 @@
 package be.vdab.toys.domain;
 //make embaddable if time for adress
-
+/**
+ * @author Mulangu C
+ */
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 

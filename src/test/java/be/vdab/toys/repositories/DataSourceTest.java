@@ -17,7 +17,7 @@ class DataSourceTest {
 
     @Test
     void getConnection() throws SQLException {
-        try(Connection connection = dataSource.getConnection()) {
+        try (Connection connection = dataSource.getConnection()) {
 
         }
     }

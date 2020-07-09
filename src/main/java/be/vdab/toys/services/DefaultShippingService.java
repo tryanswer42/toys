@@ -1,5 +1,7 @@
 package be.vdab.toys.services;
-
+/**
+ * @author Mulangu C
+ */
 import be.vdab.toys.domain.Order;
 import be.vdab.toys.domain.Status;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,7 @@ public class DefaultShippingService implements ShippingService {
 
         Set<Long> ordersWithProblems = new LinkedHashSet<>();
         AtomicBoolean readyToShip = new AtomicBoolean(true);
-        
+
         orderToShipList.stream().forEach(order ->
         {
             order.getOrderdetails().forEach(orderdetail ->

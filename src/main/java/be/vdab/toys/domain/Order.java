@@ -1,5 +1,7 @@
 package be.vdab.toys.domain;
-
+/**
+ * @author Mulangu C
+ */
 import com.sun.el.stream.Stream;
 
 import javax.persistence.*;
@@ -106,6 +108,7 @@ public class Order {
     public void setShipped(LocalDate shipped) {
         this.shipped = shipped;
     }
+
     public BigDecimal orderTotalPrice(){
         return this.getOrderdetails().stream().map(productsPrices->productsPrices.productTotalPrice()).reduce(BigDecimal.ZERO,BigDecimal::add);
     }

@@ -9,10 +9,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 class ProductTest {
-private Product testproduct;
+    private Product testproduct;
 
     @BeforeEach
-    void beforeEach(){testproduct = new Product("nametest","1:1","descriptiontest",30,40,BigDecimal.TEN,new Productline("nametest","descriptiontest"));
+    void beforeEach() {
+        testproduct = new Product("nametest", "1:1", "descriptiontest", 30, 40, BigDecimal.TEN, new Productline("nametest", "descriptiontest"));
     }
 
     @Test
@@ -22,12 +23,12 @@ private Product testproduct;
     }
 
     @Test
-    void loweringInStockWithNegatifFails(){
+    void loweringInStockWithNegatifFails() {
         assertThatIllegalArgumentException().isThrownBy(() -> testproduct.loweringInStock(-1));
     }
 
     @Test
-    void loweringInStockWithZeroFails(){
+    void loweringInStockWithZeroFails() {
         assertThatIllegalArgumentException().isThrownBy(() -> testproduct.loweringInStock(0));
     }
 
@@ -38,12 +39,12 @@ private Product testproduct;
     }
 
     @Test
-    void loweringInOrderWithNegatifFails(){
+    void loweringInOrderWithNegatifFails() {
         assertThatIllegalArgumentException().isThrownBy(() -> testproduct.loweringInOrder(-1));
     }
 
     @Test
-    void loweringInOrderWithZeroFails(){
+    void loweringInOrderWithZeroFails() {
         assertThatIllegalArgumentException().isThrownBy(() -> testproduct.loweringInOrder(0));
     }
 

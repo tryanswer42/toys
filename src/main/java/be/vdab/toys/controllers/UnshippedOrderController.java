@@ -1,5 +1,7 @@
 package be.vdab.toys.controllers;
-
+/**
+ * @author Mulangu C
+ */
 
 import be.vdab.toys.domain.Order;
 import be.vdab.toys.services.OrderService;
@@ -31,8 +33,8 @@ public class UnshippedOrderController {
     public ModelAndView orders() {
 
         ModelAndView modelAndView = new ModelAndView("unshippedOrders");
-        //return modelAndView.addObject("unshippedOrders", orderService.findAllByStatusExeptCancelledAndShipped());
-               return modelAndView.addObject("unshippedOrders", orderService.findAll());
+        return modelAndView.addObject("unshippedOrders", orderService.findAllByStatusExeptCancelledAndShipped());
+               //return modelAndView.addObject("unshippedOrders", orderService.findAll());
     }
 
     @PostMapping
