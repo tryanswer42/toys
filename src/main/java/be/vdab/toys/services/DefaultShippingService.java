@@ -28,7 +28,7 @@ public class DefaultShippingService implements ShippingService {
         AtomicBoolean readyToShip = new AtomicBoolean(true);
 
         orderToShipList.stream().forEach(order ->
-        {
+        {   readyToShip.set(true);
             order.getOrderdetails().forEach(orderdetail ->
             {
                 if (!orderdetail.isDeliverable()) {
