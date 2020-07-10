@@ -2,6 +2,7 @@ package be.vdab.toys.controllers;
 /**
  * @author Mulangu C
  */
+
 import be.vdab.toys.services.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +20,9 @@ public class OrderController {
     }
 
     @GetMapping("{id}")
-    public ModelAndView showOrder(@PathVariable Long id){
+    public ModelAndView showOrder(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView("order");
-        orderService.findById(id).ifPresent(order -> modelAndView.addObject("order",order));
+        orderService.findById(id).ifPresent(order -> modelAndView.addObject("order", order));
         return modelAndView;
     }
 }

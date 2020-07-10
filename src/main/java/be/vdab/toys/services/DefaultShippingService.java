@@ -2,6 +2,7 @@ package be.vdab.toys.services;
 /**
  * @author Mulangu C
  */
+
 import be.vdab.toys.domain.Order;
 import be.vdab.toys.domain.Status;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -28,7 +28,8 @@ public class DefaultShippingService implements ShippingService {
         AtomicBoolean readyToShip = new AtomicBoolean(true);
 
         orderToShipList.stream().forEach(order ->
-        {   readyToShip.set(true);
+        {
+            readyToShip.set(true);
             order.getOrderdetails().forEach(orderdetail ->
             {
                 if (!orderdetail.isDeliverable()) {
@@ -47,8 +48,7 @@ public class DefaultShippingService implements ShippingService {
                         ordersWithProblems.add(order.getId());
                     }
                 });
-            }
-            else {
+            } else {
                 ordersWithProblems.add(order.getId());
             }
         });

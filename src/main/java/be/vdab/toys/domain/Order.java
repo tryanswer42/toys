@@ -2,7 +2,6 @@ package be.vdab.toys.domain;
 /**
  * @author Mulangu C
  */
-import com.sun.el.stream.Stream;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -52,9 +51,10 @@ public class Order {
     private long version;
 
 
-    @OneToMany(mappedBy = "orderdetailsId.order",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "orderdetailsId.order", cascade = CascadeType.ALL)
     @OrderBy("orderdetailsId.product.id")
     private Set<Orderdetail> orderdetails = new LinkedHashSet<>();
+
     //--
     protected Order() {
     }
@@ -66,7 +66,7 @@ public class Order {
         this.comments = comments;
         this.customer = customer;
         setStatus(status);
-        this.orderdetails=orderdetails ;
+        this.orderdetails = orderdetails;
     }
 
     //--
@@ -112,8 +112,8 @@ public class Order {
         this.shipped = shipped;
     }
 
-    public BigDecimal orderTotalPrice(){
-        return this.getOrderdetails().stream().map(productsPrices->productsPrices.productTotalPrice()).reduce(BigDecimal.ZERO,BigDecimal::add);
+    public BigDecimal orderTotalPrice() {
+        return this.getOrderdetails().stream().map(productsPrices -> productsPrices.productTotalPrice()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     @Override

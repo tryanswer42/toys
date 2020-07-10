@@ -6,16 +6,12 @@ package be.vdab.toys.services;
 import be.vdab.toys.domain.Order;
 import be.vdab.toys.domain.Status;
 import be.vdab.toys.repositories.OrderRepository;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Service

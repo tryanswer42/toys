@@ -4,6 +4,7 @@ package be.vdab.toys.controllers;
  */
 
 import be.vdab.toys.domain.Order;
+import be.vdab.toys.exceptions.RecordModifiedException;
 import be.vdab.toys.services.OrderService;
 import be.vdab.toys.services.ShippingService;
 import org.springframework.stereotype.Controller;
@@ -34,19 +35,24 @@ public class UnshippedOrderController {
 
         ModelAndView modelAndView = new ModelAndView("unshippedOrders");
         return modelAndView.addObject("unshippedOrders", orderService.findAllByStatusExeptCancelledAndShipped());
-               //return modelAndView.addObject("unshippedOrders", orderService.findAll());
+        //return modelAndView.addObject("unshippedOrders", orderService.findAll());
     }
 
     @PostMapping
-    public ModelAndView shippingChecked(@RequestParam(value = "toShip",required = false) List<Long> idList) {
-        if (idList == null){
+    public ModelAndView shippingChecked(@RequestParam(value = "toShip", required = false) List<Long> idList) {
+        if (idList == null) {
             return new ModelAndView("redirect:/");
         }
         ModelAndView modelAndView = new ModelAndView("unshippedOrders");
-        List<Order> orderToShipList = orderService.findAllById(idList);
-        modelAndView.addObject("ordersWithProblems",shippingService.shippingChecked(orderToShipList));
-        modelAndView.addObject("unshippedOrders", orderService.findAllByStatusExeptCancelledAndShipped());
-        return modelAndView;
+        try {List<Order> orderToShipList = orderService.findAllById(idList);
+            modelAndView.addObject("ordersWithProblems", shippingService.shippingChecked(orderToShipList));
+            modelAndView.addObject("unshippedOrders", orderService.findAllByStatusExeptCancelledAndShipped());
+
+        }
+        catch ( RecordModifiedException ex){
+            modelAndView.addObject("unshippedOrders", orderService.findAllByStatusExeptCancelledAndShipped());
+        }
+       return modelAndView;
     }
 
 }

@@ -54,7 +54,7 @@ public class Orderdetail {
     }
 
     public BigDecimal productTotalPrice() {
-        if (ordered < 0 || priceEach.compareTo(BigDecimal.ZERO) <0 ){
+        if (ordered < 0 || priceEach.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException();
         }
         return priceEach.multiply(BigDecimal.valueOf(ordered));

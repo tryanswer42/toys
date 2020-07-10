@@ -1,4 +1,5 @@
 package be.vdab.toys.domain;
+
 /**
  * @author Mulangu C
  */

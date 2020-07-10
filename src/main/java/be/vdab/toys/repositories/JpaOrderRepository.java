@@ -1,10 +1,5 @@
 package be.vdab.toys.repositories;
 
-import be.vdab.toys.domain.Order;
-
-import javax.persistence.EntityManager;
-import java.util.List;
-
 public class JpaOrderRepository {/*implements OrderRepository{
 
     private final EntityManager manager;

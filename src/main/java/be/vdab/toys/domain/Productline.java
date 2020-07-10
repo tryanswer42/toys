@@ -2,11 +2,12 @@ package be.vdab.toys.domain;
 /**
  * @author Mulangu C
  */
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name ="productlines")
+@Table(name = "productlines")
 public class Productline {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +21,8 @@ public class Productline {
     @Version
     private long version;
 
-    protected Productline(){}
+    protected Productline() {
+    }
 
     public Productline(@NotBlank String name, String description) {
         this.name = name;

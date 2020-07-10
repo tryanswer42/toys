@@ -2,6 +2,7 @@ package be.vdab.toys.domain;
 /**
  * @author Mulangu C
  */
+
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
@@ -39,18 +40,19 @@ public class Product {
     @NumberFormat(pattern = "0.00")
     private BigDecimal price;
 
-    @ManyToOne(optional = false,fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "productlineId")
     private Productline productline;
 
     @Version
     private long version;
 
-    @OneToMany(mappedBy = "orderdetailsId.product",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "orderdetailsId.product", cascade = CascadeType.ALL)
     @OrderBy("orderdetailsId.order.id")
-    private Set<Orderdetail> orderdetails ;
+    private Set<Orderdetail> orderdetails;
 
-    protected Product() {}
+    protected Product() {
+    }
 
     public Product(@NotBlank String name, @NotBlank String scale, String description, @NotNull int inStock, @NotNull int inOrder, @NotNull BigDecimal price, Productline productline) {
         this.name = name;
@@ -98,15 +100,15 @@ public class Product {
         return orderdetails;
     }
 
-    public void loweringInStock (int orderShipped){
-        if (orderShipped < 0 ||inStock <orderShipped){
+    public void loweringInStock(int orderShipped) {
+        if (orderShipped < 0 || inStock < orderShipped) {
             throw new IllegalArgumentException();
         }
         inStock -= orderShipped;
     }
 
-    public void loweringInOrder (int orderShipped){
-        if (orderShipped < 0 ||inOrder < orderShipped){
+    public void loweringInOrder(int orderShipped) {
+        if (orderShipped < 0 || inOrder < orderShipped) {
             throw new IllegalArgumentException();
         }
         inOrder -= orderShipped;

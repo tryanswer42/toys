@@ -3,6 +3,7 @@ package be.vdab.toys.domain;
 /**
  * @author Mulangu C
  */
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -29,7 +30,6 @@ public class Customer {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "countryId")
     private Country country;
-
 
 
     @Version
