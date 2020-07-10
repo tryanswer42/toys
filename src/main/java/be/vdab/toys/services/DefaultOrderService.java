@@ -6,6 +6,7 @@ package be.vdab.toys.services;
 import be.vdab.toys.domain.Order;
 import be.vdab.toys.domain.Status;
 import be.vdab.toys.repositories.OrderRepository;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;

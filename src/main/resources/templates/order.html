@@ -18,6 +18,10 @@
 <p th:text="${order.required}"></p>
 <h3>Customer:</h3>
 <p th:text="${order.customer.name}"></p>
+<div><span th:text="${order.customer.getStreetAndNumber()}"></span>
+    <br><span th:text="${order.customer.getPostalCode()}"></span> <span th:text="${order.customer.getState()}"> </span> <span th:text="${order.customer.getCity()}"></span>
+    <br><span th:text="${order.customer.country.name}"></span>
+</div>
 <h3>Comments:</h3>
 <p th:text="${order.comments}"></p>
 <h3>Details:</h3>
@@ -26,7 +30,7 @@
         <th>Product</th><th>Price each</th><th>Quantity</th><th>Value</th><th>Deliverable</th>
     </tr>
     <tr th:each="product:${order.getOrderdetails()}" th:object="${product}">
-        <td th:text="*{product.name}"> </td>
+        <td th:text="*{product.getName()}"> </td>
         <td th:text="*{priceEach}"> </td>
         <td th:text="*{ordered}"> </td>
         <td th:text="*{productTotalPrice()}"> </td>

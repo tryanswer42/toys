@@ -11,7 +11,11 @@ import java.util.Optional;
 public interface OrderRepository extends JpaRepository<Order,Long> {
     @EntityGraph(Order.WITH_CUSTOMERSANDCOUNTRY)
     List<Order> findAll();
-//    List<Order> findAllInList(List<Long> idList);
+
+    @Override
+    @EntityGraph(Order.WITH_CUSTOMERSANDCOUNTRY)
+    Optional<Order> findById(Long aLong);
+    //    List<Order> findAllInList(List<Long> idList);
 //    List<Order> findAllInListWithoutCustomersAndCountry(List<Long> idList);
 
 }

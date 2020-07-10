@@ -20,8 +20,11 @@ import java.util.Set;
                 subgraph = "withCountry"),
         subgraphs = @NamedSubgraph(name = "withCountry",
                 attributeNodes = @NamedAttributeNode("country")))
+
 public class Order {
-    public static final String WITH_CUSTOMERSANDCOUNTRY = "Order.metCustomersAndCountry";
+    public static final String WITH_CUSTOMERSANDCOUNTRY = "Order.withCustomersAndCountry";
+    public static final String WITH_CUSTOMERSANDCOUNTRYANDORDERDATAILS = "Order.withCustomersAndCountryAndOrderdetails";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
